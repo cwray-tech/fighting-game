@@ -22,10 +22,36 @@
   padding: 20px;
 }
 
-.health {
-  background-color: yellow;
+.healthContainer {
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
   height: 30px;
   width: 100%;
+}
+
+.playerHealthContainer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.healthBackground {
+  background-color: yellow;
+  width: 100%;
+  height: 100%;
+}
+
+.health {
+  position: absolute;
+  background-color: blue;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+}
+
+.playerHealth {
+  left: 0;
 }
 
 .timer {
