@@ -23,7 +23,7 @@ function determineWinner({ player, enemy, timerId }) {
   resultContainer.style.display = "flex";
 }
 
-let timer = 10;
+let timer = 60;
 let timerId;
 function decreaseTimer() {
   timerId = setTimeout(decreaseTimer, 1000);
