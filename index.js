@@ -166,6 +166,8 @@ function animate() {
 
   background.update();
   shop.update();
+  context.fillStyle = "rgba(255,255,255, .15)";
+  context.fillRect(0, 0, canvas.width, canvas.height);
   player.update();
   enemy.update();
 
@@ -218,7 +220,9 @@ function animate() {
   ) {
     player.isAttacking = false;
     enemy.takeHit();
-    document.querySelector("#enemyHealth").style.width = enemy.health + "%";
+    gsap.to("#enemyHealth", {
+      width: enemy.health + "%",
+    });
   }
 
   if (player.isAttacking && player.framesCurrent === 4) {
@@ -235,7 +239,9 @@ function animate() {
   ) {
     enemy.isAttacking = false;
     player.takeHit();
-    document.querySelector("#playerHealth").style.width = player.health + "%";
+    gsap.to("#playerHealth", {
+      width: player.health + "%",
+    });
   }
 
   if (enemy.isAttacking && enemy.framesCurrent === 4) {
