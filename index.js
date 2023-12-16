@@ -41,6 +41,14 @@ const player = new Fighter({
     x: 215,
     y: 157,
   },
+  attackBox: {
+    offset: {
+      x: 100,
+      y: 50,
+    },
+    width: 160,
+    height: 50,
+  },
   sprites: {
     idle: {
       imageSrc: "./img/samuraiMack/Idle.png",
@@ -85,6 +93,14 @@ const enemy = new Fighter({
   offset: {
     x: 215,
     y: 167,
+  },
+  attackBox: {
+    offset: {
+      x: -170,
+      y: 50,
+    },
+    width: 170,
+    height: 50,
   },
   sprites: {
     idle: {
@@ -181,11 +197,16 @@ function animate() {
       player1: player,
       player2: enemy,
     }) &&
-    player.isAttacking
+    player.isAttacking &&
+    player.framesCurrent === 4
   ) {
     player.isAttacking = false;
     enemy.health -= 20;
     document.querySelector("#enemyHealth").style.width = enemy.health + "%";
+  }
+
+  if (player.isAttacking && player.framesCurrent === 4) {
+    player.isAttacking = false;
   }
 
   if (
@@ -193,11 +214,16 @@ function animate() {
       player1: enemy,
       player2: player,
     }) &&
-    enemy.isAttacking
+    enemy.isAttacking &&
+    enemy.framesCurrent === 2
   ) {
     enemy.isAttacking = false;
     player.health -= 20;
     document.querySelector("#playerHealth").style.width = player.health + "%";
+  }
+
+  if (enemy.isAttacking && enemy.framesCurrent === 4) {
+    enemy.isAttacking = false;
   }
 
   //End game based on health
