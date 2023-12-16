@@ -109,6 +109,21 @@ class Fighter extends Sprite {
     } else this.velocity.y += gravity;
   }
 
+  run() {
+    this.image = this.sprites.run.image;
+    this.framesMax = this.sprites.run.framesMax;
+  }
+
+  jump() {
+    this.image = this.sprites.jump.image;
+    this.framesMax = this.sprites.jump.framesMax;
+  }
+
+  idle() {
+    this.image = this.sprites.idle.image;
+    this.framesMax = this.sprites.idle.framesMax;
+  }
+
   attack() {
     this.isAttacking = true;
     setTimeout(() => {
