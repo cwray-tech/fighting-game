@@ -58,6 +58,10 @@ const player = new Fighter({
       imageSrc: "./img/samuraiMack/Fall.png",
       framesMax: 2,
     },
+    attack1: {
+      imageSrc: "./img/samuraiMack/Attack1.png",
+      framesMax: 6,
+    },
   },
 });
 
@@ -110,18 +114,18 @@ function animate() {
 
   if (keys.a.pressed && player.lastKey == "a") {
     player.velocity.x = -5;
-    player.run();
+    player.switchSprite("run");
   } else if (keys.d.pressed && player.lastKey == "d") {
     player.velocity.x = 5;
-    player.run();
+    player.switchSprite("run");
   } else {
-    player.idle();
+    player.switchSprite("idle");
   }
   //jumping
   if (player.velocity.y < 0) {
-    player.jump();
+    player.switchSprite("jump");
   } else if (player.velocity.y > 0) {
-    player.fall();
+    player.switchSprite("fall");
   }
 
   if (keys.ArrowLeft.pressed && enemy.lastKey == "ArrowLeft") {

@@ -110,27 +110,39 @@ class Fighter extends Sprite {
     } else this.velocity.y += gravity;
   }
 
-  run() {
-    this.image = this.sprites.run.image;
-    this.framesMax = this.sprites.run.framesMax;
-  }
+  switchSprite(sprite) {
+    if (
+      this.image === this.sprites.attack1.image &&
+      this.framesCurrent < this.sprites.attack1.framesMax - 1
+    )
+      return;
 
-  jump() {
-    this.image = this.sprites.jump.image;
-    this.framesMax = this.sprites.jump.framesMax;
-  }
-
-  fall() {
-    this.image = this.sprites.fall.image;
-    this.framesMax = this.sprites.fall.framesMax;
-  }
-
-  idle() {
-    this.image = this.sprites.idle.image;
-    this.framesMax = this.sprites.idle.framesMax;
+    switch (sprite) {
+      case "idle":
+        this.image = this.sprites.idle.image;
+        this.framesMax = this.sprites.idle.framesMax;
+        break;
+      case "run":
+        this.image = this.sprites.run.image;
+        this.framesMax = this.sprites.run.framesMax;
+        break;
+      case "jump":
+        this.image = this.sprites.jump.image;
+        this.framesMax = this.sprites.jump.framesMax;
+        break;
+      case "fall":
+        this.image = this.sprites.fall.image;
+        this.framesMax = this.sprites.fall.framesMax;
+        break;
+      case "attack1":
+        this.image = this.sprites.attack1.image;
+        this.framesMax = this.sprites.attack1.framesMax;
+        break;
+    }
   }
 
   attack() {
+    this.switchSprite("attack1");
     this.isAttacking = true;
     setTimeout(() => {
       this.isAttacking = false;
