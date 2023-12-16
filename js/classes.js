@@ -123,6 +123,13 @@ class Fighter extends Sprite {
     )
       return;
 
+    if (
+      this.image === this.sprites.takeHit.image &&
+      this.framesCurrent < this.sprites.takeHit.framesMax - 1
+    ) {
+      return;
+    }
+
     switch (sprite) {
       case "idle":
         this.image = this.sprites.idle.image;
@@ -144,7 +151,16 @@ class Fighter extends Sprite {
         this.image = this.sprites.attack1.image;
         this.framesMax = this.sprites.attack1.framesMax;
         break;
+      case "takeHit":
+        this.image = this.sprites.takeHit.image;
+        this.framesMax = this.sprites.takeHit.framesMax;
+        break;
     }
+  }
+
+  takeHit() {
+    this.health -= 20;
+    this.switchSprite("takeHit");
   }
 
   attack() {
